@@ -25,13 +25,13 @@ Escolha uma das opções abaixo:
 * Via HTTPS:
 
 ```bash
-git clone https://github.com/seu-usuario/todo_list.git
+git clone https://github.com/IsaiasFMAlcantara/todo_list.git
 ```
 
 * Via SSH:
 
 ```bash
-git clone git@github.com:seu-usuario/todo_list.git
+git clone git@github.com:IsaiasFMAlcantara/todo_list.git
 ```
 
 ### 4. Acessar o diretório do projeto
