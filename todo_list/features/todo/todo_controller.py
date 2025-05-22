@@ -1,5 +1,5 @@
 import streamlit as st
-from todo_list.services.todo.todo_service import todo_service
+from todo_list.services.todo.todo_service import todo_service, todo_get_service
 
 
 def todo_controller(titulo: str, descricao: str, idusuario: int):
@@ -14,3 +14,16 @@ def todo_controller(titulo: str, descricao: str, idusuario: int):
         st.rerun()
     else:
         st.error("Não foi possível adicionar o Todo. Tente novamente.")
+
+def todo_list_controller(status: int, idusuario: int):
+    if status is None or not idusuario:
+        st.error("Por favor, selecione um status e informe o ID do usuário.")
+        return
+
+    todos = todo_get_service(status=status, user_id=idusuario)
+
+    if todos:
+        return todos 
+    else:
+        return False
+

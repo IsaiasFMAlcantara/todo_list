@@ -34,3 +34,14 @@ def add_todo(db: Session, title: str, description: str, user_id: int):
         db.rollback()
         print(f"Erro ao adicionar o Todo: {str(e)}")
         return None
+
+def get_todos_by_user_and_status(db: Session, user_id: int, status: int):
+    try:
+        todos = db.query(Todo).filter(
+            Todo.user_id == user_id,
+            Todo.status == status
+        ).all()
+        return todos
+    except SQLAlchemyError as e:
+        print(f"Erro ao buscar todos: {e}")
+        return []

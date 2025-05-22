@@ -4,7 +4,7 @@ from common.database.db import Base
 from common.database.db import engine
 
 st.set_page_config(
-    page_title='To-Do-List',page_icon="📝", layout='centered'
+    page_title='To-Do-List',page_icon="📝", layout='wide'
 )
 
 Base.metadata.create_all(bind=engine)

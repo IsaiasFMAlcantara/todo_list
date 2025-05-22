@@ -1,4 +1,4 @@
-from models.todo import add_todo
+from models.todo import add_todo, get_todos_by_user_and_status
 from common.database.db import get_db
 
 
@@ -21,3 +21,19 @@ def todo_service(title: str, description: str, user_id: int):
         # Erro genérico, mas com mensagem mais amigável
         print(f"Erro ao tentar criar o Todo. Tente novamente mais tarde. Erro: {str(e)}")
         return False
+
+def todo_get_service(status: int, user_id: int):
+    try:
+        with get_db() as db:
+            todos = get_todos_by_user_and_status(db=db, user_id=user_id, status=status)
+
+            if todos:
+                print(f"{len(todos)} todos encontrados para o usuário {user_id} com status {status}.")
+                return todos
+            else:
+                print(f"Nenhum todo encontrado para o usuário {user_id} com status {status}.")
+                return []
+    
+    except Exception as e:
+        print(f"Erro ao buscar todos. Detalhes: {str(e)}")
+        return []
