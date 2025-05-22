@@ -1,0 +1,7 @@
+[server]
+headless = true
+[browser]
+serverAddress = "localhost"
+[theme]
+base="light"
+primaryColor="#fbd402"
