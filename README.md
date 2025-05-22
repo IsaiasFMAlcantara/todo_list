@@ -40,25 +40,53 @@ git clone git@github.com:IsaiasFMAlcantara/todo_list.git
 cd todo_list
 ```
 
-### 5. Instalar as dependências do projeto
+### 5. Criar o arquivo de configuração `secrets.toml`
+
+Antes de rodar o projeto, você precisa criar um arquivo chamado `secrets.toml` dentro do diretório `.streamlit` com o seguinte conteúdo:
+
+```toml
+# .streamlit/secrets.toml
+
+database_url = "sqlite:///./NOME_DO_TEU_BANCO.db"
+encode = "teu_encript_code"  # este valor será usado como 'salt' ou chave base para codificação com bcrypt
+```
+
+> ℹ️ **Observação:**
+> A variável `encode` é utilizada para codificação com **bcrypt**.
+> Caso não esteja familiarizado, vale a pena pesquisar sobre [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) e como ele utiliza um *salt* para garantir segurança na encriptação de dados sensíveis.
+
+Substitua:
+
+* `NOME_DO_TEU_BANCO.db` pelo nome desejado para o seu banco SQLite.
+* `teu_encript_code` por uma chave segura, preferencialmente uma string aleatória e forte.
+
+> 💡 Certifique-se de que a pasta `.streamlit` exista. Se não existir, crie-a:
+>
+> ```bash
+> mkdir .streamlit
+> ```
+
+### 6. Instalar as dependências do projeto
 
 ```bash
 poetry install
 ```
 
-### 6. Ativar o ambiente virtual
+### 7. Ativar o ambiente virtual
+
+* Em sistemas Unix/macOS:
 
 ```bash
 eval "$(poetry env info --path)/bin/activate"
 ```
 
-> 💡 Em sistemas Windows, use:
->
-> ```powershell
-> poetry shell
-> ```
+* Em Windows:
 
-### 7. Executar o projeto
+```powershell
+poetry shell
+```
+
+### 8. Executar o projeto
 
 ```bash
 task run
