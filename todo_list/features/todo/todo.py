@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
 from todo_list.features.todo.widgets.cards import render_cards
 from todo_list.features.todo.todo_controller import todo_controller,todo_list_controller
 
@@ -15,21 +16,21 @@ def vote():
         st.success('Tarefa adicionada com sucesso',icon="✅")
         st.rerun()
 
-def sidebarFunction():
-    with st.sidebar:
-        if "user" not in st.session_state and not st.session_state:
-            st.warning("Informações do usuário não encontradas.",icon="⚠️")
-        
-        st.markdown("## Informações do Usuário")
-        nome = st.session_state['user']['name']
-        email = st.session_state['user']['email']
-        st.write(f"**Nome:** {nome}")
-        st.write(f"**E-mail:** {email}")
-
 def todo():
     if "user" not in st.session_state and not st.session_state:
-        st.warning("Informações do usuário não encontradas.",icon="⚠️")    
-    sidebarFunction()
+        st.warning("Informações do usuário não encontradas.",icon="⚠️")
+  
+    st_autorefresh(interval=600000, key="refresh")
+    colu1,colu2 = st.columns(2)
+    nome = st.session_state['user']['name']
+    email = st.session_state['user']['email']
+    
+    with colu1:
+        st.write(f"**Nome:** {nome}")
+    
+    with colu2:
+        st.write(f"**E-mail:** {email}")
+    
     st.markdown("""
     <style>
         .main .block-container {

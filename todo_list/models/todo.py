@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP, ForeignKey, func
+from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, func
 from sqlalchemy.orm import relationship, Session
 from common.database.db import Base
 from sqlalchemy.exc import SQLAlchemyError
