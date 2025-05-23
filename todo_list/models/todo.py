@@ -45,3 +45,14 @@ def get_todos_by_user_and_status(db: Session, user_id: int, status: int):
     except SQLAlchemyError as e:
         print(f"Erro ao buscar todos: {e}")
         return []
+    
+def get_todos_by_user_and_id(db: Session, user_id: int, idtask: int):
+    try:
+        todos = db.query(Todo).filter(
+            Todo.user_id == user_id,
+            Todo.id == idtask
+        ).all()
+        return todos
+    except SQLAlchemyError as e:
+        print(f"Erro ao buscar todos: {e}")
+        return []

@@ -1,5 +1,5 @@
 import streamlit as st
-from todo_list.services.todo.todo_service import todo_service, todo_get_service
+from todo_list.services.todo.todo_service import todo_service, todo_get_service, todo_get_id_service
 
 
 def todo_controller(titulo: str, descricao: str, idusuario: int):
@@ -21,6 +21,18 @@ def todo_list_controller(status: int, idusuario: int):
         return
 
     todos = todo_get_service(status=status, user_id=idusuario)
+
+    if todos:
+        return todos 
+    else:
+        return False
+    
+def todo_list_id_controller(idtask: int, idusuario: int):
+    if idtask is None or not idusuario:
+        st.error("Por favor, selecione um status e informe o ID do usuário.")
+        return
+
+    todos = todo_get_id_service(taskid=idtask, user_id=idusuario)
 
     if todos:
         return todos 

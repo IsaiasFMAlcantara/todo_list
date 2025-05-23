@@ -2,16 +2,12 @@ from streamlit_card import card
 import streamlit as st
 
 def colorcard(number):
-    if number == 1:
-        return '#f8d7da'
-    elif number == 2:
-        return '#d1ecf1'
-    elif number == 3:
-        return '#fff3cd'
-    elif number == 4:
-        return '#d4edda'
-    else:
-        return '#000000'
+    return {
+        1: '#f8d7da',
+        2: '#d1ecf1',
+        3: '#fff3cd',
+        4: '#d4edda',
+    }.get(number, '#000000')
 
 def render_cards(items):
     if not items:

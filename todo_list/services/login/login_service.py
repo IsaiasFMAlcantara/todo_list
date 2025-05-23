@@ -16,7 +16,6 @@ def login_service(email: str, senha: str):
                 return False
 
             if login._validar_senha(senha, user.password_hash):
-                print(f"Login bem-sucedido! Bem-vindo(a), {user.username}.")
                 informacoes = {
                     "id":user.id,
                     "email":user.email,

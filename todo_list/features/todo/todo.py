@@ -4,7 +4,7 @@ from todo_list.features.todo.widgets.cards import render_cards
 from todo_list.features.todo.todo_controller import todo_controller,todo_list_controller
 
 @st.dialog("Criar tarefa")
-def vote():
+def createtask(iduser):
     titulo = st.text_input(
                 'Titulo', placeholder='Titulo da tarefa', label_visibility='hidden'
             )
@@ -12,13 +12,15 @@ def vote():
                 'Descricao', placeholder='Descrição da tarefa', label_visibility='hidden'
             )
     if st.button("Submit"):
-        todo_controller(titulo,descricao,st.session_state['user']['id'])
+        todo_controller(titulo,descricao,iduser)
         st.success('Tarefa adicionada com sucesso',icon="✅")
         st.rerun()
 
 def todo():
     if "user" not in st.session_state and not st.session_state:
         st.warning("Informações do usuário não encontradas.",icon="⚠️")
+    
+    usuarioid = st.session_state['user']['id']
   
     st_autorefresh(interval=600000, key="refresh")
     colu1,colu2 = st.columns(2)
@@ -42,12 +44,12 @@ def todo():
     """, unsafe_allow_html=True)
 
     if st.button("Criar Tarefa"):
-        vote()
+        createtask(usuarioid)
 
-    afazer = todo_list_controller(1,st.session_state['user']['id'])
-    fazendo = todo_list_controller(2,st.session_state['user']['id'])
-    pausada = todo_list_controller(3,st.session_state['user']['id'])
-    finalizada = todo_list_controller(4,st.session_state['user']['id'])
+    afazer = todo_list_controller(1,usuarioid)
+    fazendo = todo_list_controller(2,usuarioid)
+    pausada = todo_list_controller(3,usuarioid)
+    finalizada = todo_list_controller(4,usuarioid)
 
     st.markdown('# Lista de tarefas')
 
