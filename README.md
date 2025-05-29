@@ -102,3 +102,14 @@ task run
 * [SQLite](https://www.sqlite.org/)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
 * [Taskfile](https://taskfile.dev/) (para automatização de comandos)
+
+### 9. Imagens
+---
+- Imagem do login
+![Login](imagens/login.png)
+---
+- Imagem da página de todo
+![Todo](imagens/todo.png)
+---
+- Imagem da página de criar tarefa
+![Login](imagens/criar_tarefa.png)
